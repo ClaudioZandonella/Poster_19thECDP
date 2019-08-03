@@ -1,0 +1,327 @@
+% --------------------------------------------------------------------------- %
+%     Poster  19th European Conference on Developmental Psychology            %
+%            29 August- 1 September 2019; Athens, Greece.                     %
+%                                                                             %
+%            The role of mother and father attachment                         %
+%            in children’s socioemotional-adjustment:                         %
+%             A Bayesian model comparison approach                            %
+%                                                                             %
+% --------------------------------------------------------------------------- %
+% Created with Brian Amberg's LaTeX Poster Template. Please refer for the     %
+% attached README.md file for the details how to compile with `pdflatex`.     %
+% --------------------------------------------------------------------------- %
+% --------------------------------------------------------------------------- %
+
+\documentclass[a0paper,portrait]{baposter}
+
+\usepackage{relsize}		% For \smaller
+\usepackage{url}			% For \url
+\usepackage{epstopdf}	% Included EPS files automatically converted to PDF to include with pdflatex
+\usepackage{hyperref}
+
+\usepackage{enumitem}  % to customize identation in itemize 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+\usepackage{graphicx}
+
+\usepackage{caption}
+\captionsetup{labelformat=empty}  % remove caption word
+\captionsetup{textfont=bf}
+
+%%%%%%%%%%%%%%%%
+% Added comand to resolve bug of pgf path when looking for raster images
+\let\pgfimageWithoutPath\pgfimage 
+\renewcommand{\pgfimage}[2][]{\pgfimageWithoutPath[#1]{figure/#2}}
+%%%%%%%%%%%%%%%%
+
+
+%%% Global Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{figure/}}	% Root directory of the pictures 
+\tracingstats=2			% Enabled LaTeX logging with conditionals
+
+%%% Color Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{bordercol}{RGB}{40,40,40}
+\definecolor{headercol1}{RGB}{150,10,20}
+\definecolor{headercol2}{RGB}{150,10,20 }
+\definecolor{headerfontcol}{RGB}{256,256,256}
+\definecolor{boxcolor}{RGB}{256,256,256}
+\definecolor{background}{RGB}{239,239,239}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Utility functions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Save space in lists. Use this after the opening of the list %%%%%%%%%%%%%%%%
+\newcommand{\compresslist}{
+	\setlength{\itemsep}{1pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+}
+
+
+<<settings, echo=F, message=FALSE, warning=FALSE, error=FALSE>>=
+rm(list=ls())
+
+library(ggplot2)
+library(kableExtra)
+library(brms)
+library(ggcorrplot)
+library(tidyr)
+library(dplyr)
+library(extrafont)
+
+knitr::opts_chunk$set(echo = FALSE, dev = "tikz", dev.args=list(pointsize=10))
+options(knitr.kable.NA = '')
+
+## ggplot settings
+theme_set(theme_classic()+
+           theme(text = element_text(size=12)))
+
+## Data directory
+data_directory<-"Rdata/"
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\typeout{Poster rendering started}
+
+%%% Setting Background Image %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\background{
+	\begin{tikzpicture}[remember picture,overlay]%
+	% \draw (current page.north west)+(-2em,2em) node[anchor=north west]
+	% {\includegraphics[height=1.1\textheight]{background}};
+	 
+	 %the poster background color
+    \fill[fill=background] (current page.north west) rectangle (current page.south east);
+    %the header
+    \fill [fill=headercol1] (current page.north west) rectangle ([yshift=-\headerheight] current page.north east);
+	
+	\end{tikzpicture}
+}
+
+%%% General Poster Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Eye Catcher, Title, Authors and University Images %%%%%%%%%%%%%%%%%%%%%%
+\begin{poster}{
+	grid=false,
+	columns=6,
+	% Option is left on true though the eyecatcher is not used. The reason is
+	% that we have a bit nicer looking title and author formatting in the headercol
+	% this way
+	%eyecatcher=false, 
+	borderColor=bordercol,
+	headerColorOne=headercol1,
+	headerColorTwo=headercol2,
+	headerFontColor=headerfontcol,
+	headerheight=0.14\textheight,
+	% Only simple background color used, no shading, so boxColorTwo isn't necessary
+	boxColorOne=boxcolor,
+	headershape=roundedright,
+	headerfont=\Large\sf\bf,
+	textborder=roundedsmall,
+	background=user,
+	headerborder=open,
+  boxshade=plain
+}
+%%% Eye Cacther %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+	%\fbox{
+		\begin{minipage}{10em}
+		  \hfill
+			\includegraphics[height=7em]{EADP_logo_bw}
+		\end{minipage}
+	%}
+}
+%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\sf\bf
+	\textcolor{white}{The role of mother and father attachment in children’s socioemotional-adjustment:\\A Bayesian model comparison approach}
+}
+%%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	\vspace{1em} 
+	\textcolor{white}{
+	Zandonella Callegher C., Marci T. \& Altoè G.\\
+	{\smaller Department of Developmental and Social Psychology University of Padua}
+	}
+}
+%%% Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+% The logos are compressed a bit into a simple box to make them smaller on the result
+% (Wasn't able to find any bigger of them.)
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+	%\fbox{
+		\begin{minipage}{8em}
+			\includegraphics[height=8em]{unipd_logo_uff}
+		\end{minipage}
+	%}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{The Present Study}{name=background,column=0,span=3,row=0}{
+%%%%%%%%%
+\textbf{Theoretical background:}
+\begin{itemize}[leftmargin=*]
+  \item{\textbf{Attachment relationships} play a key role in children’s socioemotional adjustment (Cassidy \& Shaver, 2016)}
+  \item{Both \textbf{mother} and \textbf{father attachment} are considered important. However, research to date has largely focused on mother-child attachment.}
+\end{itemize}
+
+%%%%%%%%%
+\textbf{Objectives:}
+\begin{itemize}[leftmargin=*]
+  \item{Evaluate the contribution of mother and father attachment to children’s socioemotional-adjustment in middle childhood.}
+  \item{Simultaneously compare diffrent theoretical prospectives within a Bayesian model comparison approach.}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\headerbox{Results}{name=design,span=6,column=0, below=background}{
+
+%%%%%%
+%\hspace{.02\linewidth}
+
+\begin{minipage}{.23\linewidth}
+\hfill
+\end{minipage}
+%\fbox{
+\begin{minipage}{.52\linewidth}
+\begin{minipage}{.76\linewidth}
+\textbullet\ \underline{\textbf{Model comparison}}
+\renewcommand{\arraystretch}{1.6}
+<<table_model_comparison, echo=F>>=
+
+model_comparison<-data.frame(Model_name=c("Base","Mother","Father","Additive","Interaction"),
+                             Independent=c("Gender+Grade+FAS","Base+SS mother","Base+SS father",
+                                           "Base+SS mother+SS father", "Base+(SS mother*SS father)"),
+                             Internalizing=c(0.00,0.00,0.34,0.03,0.63),
+                             Externalizing=format(c(0.0,0.9,0.0,0.1,0.0), nsmall = 2), stringsAsFactors = F)
+
+
+kable(model_comparison,format = "latex",booktabs=T, align = c("r","l","c","c"),
+      caption = "Weights for internalizing and externalizing problems",
+      col.names = c("Model", "Variables", "$Int_w$","$Ext_w$"), escape = F) %>%
+  row_spec(0,bold=T, align = "c") %>%
+  column_spec(1,bold=T) %>%
+  kable_styling(full_width = F,latex_options = "HOLD_position")
+@
+\end{minipage}
+      \hspace{0.0\linewidth}
+\begin{minipage}{0.2\linewidth}
+\vspace*{3em}
+    \includegraphics[height=4.25cm]{Models_Weights}
+\end{minipage}
+\end{minipage}
+\hfill
+\begin{minipage}{.2\linewidth}
+\hfill\includegraphics[width=2.5cm]{Download_poster}\hspace{.5em}
+\end{minipage}
+
+%}
+%%%%%%
+
+%\fbox{
+\begin{minipage}{.48\linewidth}
+\textbullet\ \underline{\textbf{Internalizing}}
+
+\centering\includegraphics[width=.95\linewidth]{Int_effects}
+
+\centering \footnotesize\textbf{3D representation of the interaction}
+\centering\includegraphics[width=.90\linewidth]{Plot_3D}
+\end{minipage}
+%}
+\hfill
+%\fbox{
+\begin{minipage}{.48\linewidth}
+\textbullet\ \underline{\textbf{Externalizing}}
+
+\centering\includegraphics[width=.95\linewidth]{ext_effects}
+\end{minipage}
+%}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\headerbox{Method}{name=definitions,column=3,span=3,row=0, above=design }{
+
+\textbf{Participants}: 166 children (mean age = 9 years and SD = 7 months, 54\% girls) were recruited from Italian primary schools.\par
+
+\vspace{1em}
+
+%%%%%%%%%
+\textbf{Instruments:}
+\begin{itemize}[leftmargin=*]
+  \item{\textbf{Security Scale} (SS; Kerns et al., 2001); Self-report measuring attachment towards mother  and father separately.}
+  \item{\textbf{Strengths \& Difficulties Questionnaire} (SDQ; Goodman, 2001); School theachers  evaluated children internalizing and  externalizing problems.}
+  \item{\textbf{Family Affluence Scale} (FAS; Boyce, et al., 2006); Self-report for measuring socioeconomic status.}
+\end{itemize}
+
+\vspace*{.1cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\headerbox{}%
+{name=foottext, column=0, span=6, above=bottom,textborder=none,headerborder=none,%
+boxheaderheight=0pt,boxColorOne=headercol1 }{
+\hspace*{2cm}
+			  \includegraphics[height=5em]{R_logo}
+ \hfill
+        \includegraphics[height=5em]{LaTeX_logo2}
+ \hfill
+%        \includegraphics[height=5em]{Shiny_logo}
+\hspace*{2cm}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\headerbox{Conclusions}
+{name=questions,span=6,column=0,below=design, above=foottext}{
+
+\centering Father and mother attachment play a complememntary role in children’s socioemotional adjustment.
+
+\vspace{1em}
+
+\hfill
+\begin{minipage}{.45\linewidth}
+\textbullet\ \textbf{Internalizing Problems:} boys have more problems than girls. Greater discrepancy between the maternal and paternal levels of security are assocaited to more problems. 
+\end{minipage}
+%%%%%%
+\hfill
+\begin{minipage}{.45\linewidth}
+\textbullet\ \textbf{Externalizing Problems:} boys have more problems than girls. Younger childer have more problems than older children. Low levels of maternal security are associated to more problems.
+\end{minipage}
+\hspace{2em}
+%%%%%%
+
+}
+
+
+
+
+
+\end{poster}
+\end{document}
