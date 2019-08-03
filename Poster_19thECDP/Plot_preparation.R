@@ -192,8 +192,8 @@ ssm.M_effect<-ssm.M_prediction%>%
                   point_interval = mean_qi,
                   .width = c( .95, .8, .5), 
                   color = RColorBrewer::brewer.pal(5, "Blues")[[5]]) +
-  scale_fill_brewer()+
-  labs(fill = "HDI")+
+  scale_fill_brewer(name="HDI",
+                    guide=guide_legend(direction = "horizontal",title.position = "top"))+
   ggtitle("Mother Security Effect")+
   xlab("Mother Security")+
   ylab("Externalizing Score")+
@@ -295,6 +295,25 @@ dev.off()
 
 tools::texi2dvi('figure/Int_effects.tex',pdf=T,clean=T)
 
+
+##### trial 2
+tikz('figure/Int_effects_2.tex',standAlone=TRUE,
+     width = 3.5, height =2.5, pointsize = "20")
+
+plot <- gridExtra::arrangeGrob(Gender_effect,
+                               nrow=1,ncol=2,
+                               layout_matrix = rbind(c( 1,1)))
+
+# Add labels to the arranged plots
+plot<-ggpubr::as_ggplot(plot) +
+  cowplot::draw_plot_label(label = c("A)"), size = 15,
+                           x = c(0), y = c(1)) # Add labels
+plot
+dev.off()
+
+tools::texi2dvi('figure/Int_effects_2.tex',pdf=T,clean=T)
+
+
 #############   3d plot                  ######
 
 
@@ -324,7 +343,7 @@ plotly::plot_ly(x=ssp.list, y=ssm.list, z=matrix_predicted,
   plotly::layout(scene = list(xaxis = list(title = 'Father Security'),
                  yaxis = list(title = 'Mother Security'),
                  zaxis = list(title = 'Internalizing Score')))%>%
-  plotly::add_surface() # Grafico 3D
+  plotly::add_surface() # Plot 3D
   
 
 

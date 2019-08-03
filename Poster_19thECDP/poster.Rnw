@@ -245,9 +245,9 @@ kable(model_comparison,format = "latex",booktabs=T, align = c("r","l","c","c"),
 \begin{minipage}{.48\linewidth}
 \textbullet\ \underline{\textbf{Internalizing}}
 
-\centering\includegraphics[width=.95\linewidth]{Int_effects}
+\centering\includegraphics[width=.45\linewidth]{Int_effects_2}
 
-\centering \footnotesize\textbf{3D representation of the interaction}
+\centering \footnotesize\textbf{B)} Interaction Effect
 \centering\includegraphics[width=.90\linewidth]{Plot_3D}
 \end{minipage}
 %}
@@ -255,6 +255,8 @@ kable(model_comparison,format = "latex",booktabs=T, align = c("r","l","c","c"),
 %\fbox{
 \begin{minipage}{.48\linewidth}
 \textbullet\ \underline{\textbf{Externalizing}}
+
+\vspace{2em}
 
 \centering\includegraphics[width=.95\linewidth]{ext_effects}
 \end{minipage}
@@ -291,7 +293,7 @@ boxheaderheight=0pt,boxColorOne=headercol1 }{
  \hfill
         \includegraphics[height=5em]{LaTeX_logo2}
  \hfill
-%        \includegraphics[height=5em]{Shiny_logo}
+        \includegraphics[height=5em]{Stan_logo}
 \hspace*{2cm}
 
 }

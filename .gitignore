@@ -21,10 +21,11 @@
 *.xml
 *.gz
 *.toc
-
+*.lpr
 
 # Ignore folder with images
 #figure/
+
 
 # Ignore folder with data
 Rdata/
