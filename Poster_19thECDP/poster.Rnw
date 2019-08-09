@@ -155,14 +155,14 @@ data_directory<-"Rdata/"
 }
 %%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\sf\bf
-	\textcolor{white}{The role of mother and father attachment in children’s socioemotional-adjustment:\\A Bayesian model comparison approach}
+	\textcolor{white}{The role of mother and father attachment in children’s socioemotional adjustment:\\A Bayesian model comparison approach}
 }
 %%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
 	\vspace{1em} 
 	\textcolor{white}{
-	Zandonella Callegher C., Marci T. \& Altoè G.\\
-	{\smaller Department of Developmental and Social Psychology University of Padua}
+	Claudio Zandonella Callegher, Tatiana Marci \& Gianmanrco Altoè\\
+	{\smaller Department of Developmental and Social Psychology, University of Padua}
 	}
 }
 %%% Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +191,7 @@ data_directory<-"Rdata/"
 \textbf{Objectives:}
 \begin{itemize}[leftmargin=*]
   \item{Evaluate the contribution of mother and father attachment to children’s socioemotional-adjustment in middle childhood.}
-  \item{Simultaneously compare diffrent theoretical prospectives within a Bayesian model comparison approach.}
+  \item{Simultaneously compare different theoretical prespectives within a Bayesian model comparison approach.}
 \end{itemize}
 }
 
@@ -268,7 +268,7 @@ kable(model_comparison,format = "latex",booktabs=T, align = c("r","l","c","c"),
 
 \headerbox{Method}{name=definitions,column=3,span=3,row=0, above=design }{
 
-\textbf{Participants}: 166 children (mean age = 9 years and SD = 7 months, 54\% girls) were recruited from Italian primary schools.\par
+\textbf{Participants}: 166 children (54\% girls) were recruited from Italian primary schools (45\% $3^{rd}$ grade, 55\% $4^{th}$ grade).\par
 
 \vspace{1em}
 
@@ -276,7 +276,7 @@ kable(model_comparison,format = "latex",booktabs=T, align = c("r","l","c","c"),
 \textbf{Instruments:}
 \begin{itemize}[leftmargin=*]
   \item{\textbf{Security Scale} (SS; Kerns et al., 2001); Self-report measuring attachment towards mother  and father separately.}
-  \item{\textbf{Strengths \& Difficulties Questionnaire} (SDQ; Goodman, 2001); School theachers  evaluated children internalizing and  externalizing problems.}
+  \item{\textbf{Strengths \& Difficulties Questionnaire} (SDQ; Goodman, 2001); School teachers evaluated children's internalizing and externalizing problems.}
   \item{\textbf{Family Affluence Scale} (FAS; Boyce, et al., 2006); Self-report for measuring socioeconomic status.}
 \end{itemize}
 
@@ -309,12 +309,12 @@ boxheaderheight=0pt,boxColorOne=headercol1 }{
 
 \hfill
 \begin{minipage}{.45\linewidth}
-\textbullet\ \textbf{Internalizing Problems:} boys have more problems than girls. Greater discrepancy between the maternal and paternal levels of security are assocaited to more problems. 
+\textbullet\ \textbf{Internalizing Problems:} boys have more problems than girls. Greater discrepancy between maternal and paternal levels of security are assocaited with more problems. 
 \end{minipage}
 %%%%%%
 \hfill
 \begin{minipage}{.45\linewidth}
-\textbullet\ \textbf{Externalizing Problems:} boys have more problems than girls. Younger childer have more problems than older children. Low levels of maternal security are associated to more problems.
+\textbullet\ \textbf{Externalizing Problems:} boys have more problems than girls. Younger childer have more problems than older children. Low levels of maternal security are associated with more problems.
 \end{minipage}
 \hspace{2em}
 %%%%%%
