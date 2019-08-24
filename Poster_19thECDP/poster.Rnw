@@ -183,7 +183,7 @@ data_directory<-"Rdata/"
 %%%%%%%%%
 \textbf{Theoretical background:}
 \begin{itemize}[leftmargin=*]
-  \item{\textbf{Attachment relationships} play a key role in children’s socioemotional adjustment (Cassidy \& Shaver, 2016)}
+  \item{\textbf{Attachment relationships} play a key role in children’s socioemotional adjustment (Cassidy \& Shaver, 2016).}
   \item{Both \textbf{mother} and \textbf{father attachment} are considered important. However, research to date has largely focused on mother-child attachment.}
 \end{itemize}
 
