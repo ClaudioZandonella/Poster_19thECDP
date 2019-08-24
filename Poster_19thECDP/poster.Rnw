@@ -276,7 +276,7 @@ kable(model_comparison,format = "latex",booktabs=T, align = c("r","l","c","c"),
 \textbf{Instruments:}
 \begin{itemize}[leftmargin=*]
   \item{\textbf{Security Scale} (SS; Kerns et al., 2001); Self-report measuring attachment towards mother  and father separately.}
-  \item{\textbf{Strengths \& Difficulties Questionnaire} (SDQ; Goodman, 2001); School teachers evaluated children's internalizing and externalizing problems.}
+  \item{\textbf{Strengths \& Difficulties Questionnaire} (SDQ; Goodman \& Goodman, 2009); School teachers evaluated children's internalizing and externalizing problems.}
   \item{\textbf{Family Affluence Scale} (FAS; Boyce, et al., 2006); Self-report for measuring socioeconomic status.}
 \end{itemize}
 
